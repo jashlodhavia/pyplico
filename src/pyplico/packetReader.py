@@ -2,6 +2,7 @@ import dpkt
 import types
 from pyplico.smtp_utils import SMTPUtils
 from pyplico.udp_utils import UdpUtils
+from pyplico.http_utils import HTTPUtils
 from pyplico.utils import get_headers, get_http_request
 from pyplico.flowtable import FlowTable
 
@@ -151,7 +152,8 @@ def test():
 		if UdpUtils.is_dns(packet[0]):
 			print(UdpUtils.get_dns_queries(packet[0], verbose=True), "DNS")
 			# break
-
+		if HTTPUtils.is_http(packet[0]):
+			print(HTTPUtils.get_user_agent(packet[0]))
 
 
 if __name__ == "__main__":
