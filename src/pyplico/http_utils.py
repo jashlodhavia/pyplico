@@ -26,7 +26,16 @@ class HTTPUtils:
         return True
 
     @staticmethod
-    def get_user_agent(ip, verbose=False):
+    def get_user_agent(ip):
+        """
+           This function returns the user-agent(browser info) if the request was http
+
+            parameters:
+                - ip : packet of IP type. Instance of dpkt.ip.IP
+
+            returns:
+                - str : user-agent/browser-info
+        """
         if HTTPUtils.is_http(ip):
             tcp = ip.data
             request = dpkt.http.Request(tcp.data)
